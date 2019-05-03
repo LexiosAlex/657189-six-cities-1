@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import {App} from "./components/app/app.jsx";
 
-const places = [
+const cities = [
   {
     city: `Paris`
   },
@@ -25,14 +25,43 @@ const places = [
   }
 ];
 
+const places = [
+  {
+    premium: false,
+    img: `img/apartment-01.jpg`,
+    price: `140`,
+    description: `MockDescription`,
+  },
+  {
+    premium: true,
+    img: `img/apartment-01.jpg`,
+    price: `140`,
+    description: `MockDescription`,
+  },
+  {
+    premium: true,
+    img: `img/apartment-01.jpg`,
+    price: `140`,
+    description: `MockDescription`,
+  },
+  {
+    premium: false,
+    img: `img/apartment-01.jpg`,
+    price: `140`,
+    description: `MockDescription`,
+  }
+];
+
 const init = () => {
   const settings = {
-    cities: places,
+    citiesArray: cities,
+    placesArray: places,
   };
 
   ReactDOM.render(
       <App
-        cities={settings.cities}
+        cities={settings.citiesArray}
+        places={settings.placesArray}
       />,
       document.getElementById(`root`)
   );
