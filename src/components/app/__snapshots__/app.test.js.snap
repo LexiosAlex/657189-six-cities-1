@@ -118,7 +118,69 @@ exports[`Render App 1`] = `
               className=" locations__item-link tabs__item"
               href="#"
             >
-              <span />
+              <span>
+                Paris
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className=" locations__item-link tabs__item"
+              href="#"
+            >
+              <span>
+                Cologne
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className=" locations__item-link tabs__item"
+              href="#"
+            >
+              <span>
+                Brussels
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className="tabs__item--active locations__item-link tabs__item"
+              href="#"
+            >
+              <span>
+                Amsterdam
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className=" locations__item-link tabs__item"
+              href="#"
+            >
+              <span>
+                Hamburg
+              </span>
+            </a>
+          </li>
+          <li
+            className="locations__item"
+          >
+            <a
+              className=" locations__item-link tabs__item"
+              href="#"
+            >
+              <span>
+                Dusseldorf
+              </span>
             </a>
           </li>
         </ul>
@@ -202,6 +264,8 @@ exports[`Render App 1`] = `
           >
             <article
               className="cities__place-card place-card"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
             >
               <div
                 className="cities__image-wrapper place-card__image-wrapper"
@@ -213,6 +277,8 @@ exports[`Render App 1`] = `
                     alt="Place image"
                     className="place-card__image"
                     height="200"
+                    onClick={[Function]}
+                    src="img/apartment-01.jpg"
                     width="260"
                   />
                 </a>
@@ -230,6 +296,7 @@ exports[`Render App 1`] = `
                       className="place-card__price-value"
                     >
                       €
+                      140
                     </b>
                     <span
                       className="place-card__price-text"
@@ -282,7 +349,311 @@ exports[`Render App 1`] = `
                 >
                   <a
                     href="#"
+                  >
+                    MockDescription
+                  </a>
+                </h2>
+                <p
+                  className="place-card__type"
+                />
+              </div>
+            </article>
+            <article
+              className="cities__place-card place-card"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <div
+                className="place-card__mark"
+              >
+                <span>
+                  Premium
+                </span>
+              </div>
+              <div
+                className="cities__image-wrapper place-card__image-wrapper"
+              >
+                <a
+                  href="#"
+                >
+                  <img
+                    alt="Place image"
+                    className="place-card__image"
+                    height="200"
+                    onClick={[Function]}
+                    src="img/apartment-01.jpg"
+                    width="260"
                   />
+                </a>
+              </div>
+              <div
+                className="place-card__info"
+              >
+                <div
+                  className="place-card__price-wrapper"
+                >
+                  <div
+                    className="place-card__price"
+                  >
+                    <b
+                      className="place-card__price-value"
+                    >
+                      €
+                      140
+                    </b>
+                    <span
+                      className="place-card__price-text"
+                    >
+                      / night
+                    </span>
+                  </div>
+                  <button
+                    className="place-card__bookmark-button button"
+                    type="button"
+                  >
+                    <svg
+                      className="place-card__bookmark-icon"
+                      height="19"
+                      width="18"
+                    >
+                      <use
+                        xlinkHref="#icon-bookmark"
+                      />
+                    </svg>
+                    <span
+                      className="visually-hidden"
+                    >
+                      To bookmarks
+                    </span>
+                  </button>
+                </div>
+                <div
+                  className="place-card__rating rating"
+                >
+                  <div
+                    className="place-card__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "93%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <h2
+                  className="place-card__name"
+                >
+                  <a
+                    href="#"
+                  >
+                    MockDescription
+                  </a>
+                </h2>
+                <p
+                  className="place-card__type"
+                />
+              </div>
+            </article>
+            <article
+              className="cities__place-card place-card"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <div
+                className="place-card__mark"
+              >
+                <span>
+                  Premium
+                </span>
+              </div>
+              <div
+                className="cities__image-wrapper place-card__image-wrapper"
+              >
+                <a
+                  href="#"
+                >
+                  <img
+                    alt="Place image"
+                    className="place-card__image"
+                    height="200"
+                    onClick={[Function]}
+                    src="img/apartment-01.jpg"
+                    width="260"
+                  />
+                </a>
+              </div>
+              <div
+                className="place-card__info"
+              >
+                <div
+                  className="place-card__price-wrapper"
+                >
+                  <div
+                    className="place-card__price"
+                  >
+                    <b
+                      className="place-card__price-value"
+                    >
+                      €
+                      140
+                    </b>
+                    <span
+                      className="place-card__price-text"
+                    >
+                      / night
+                    </span>
+                  </div>
+                  <button
+                    className="place-card__bookmark-button button"
+                    type="button"
+                  >
+                    <svg
+                      className="place-card__bookmark-icon"
+                      height="19"
+                      width="18"
+                    >
+                      <use
+                        xlinkHref="#icon-bookmark"
+                      />
+                    </svg>
+                    <span
+                      className="visually-hidden"
+                    >
+                      To bookmarks
+                    </span>
+                  </button>
+                </div>
+                <div
+                  className="place-card__rating rating"
+                >
+                  <div
+                    className="place-card__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "93%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <h2
+                  className="place-card__name"
+                >
+                  <a
+                    href="#"
+                  >
+                    MockDescription
+                  </a>
+                </h2>
+                <p
+                  className="place-card__type"
+                />
+              </div>
+            </article>
+            <article
+              className="cities__place-card place-card"
+              onMouseOut={[Function]}
+              onMouseOver={[Function]}
+            >
+              <div
+                className="cities__image-wrapper place-card__image-wrapper"
+              >
+                <a
+                  href="#"
+                >
+                  <img
+                    alt="Place image"
+                    className="place-card__image"
+                    height="200"
+                    onClick={[Function]}
+                    src="img/apartment-01.jpg"
+                    width="260"
+                  />
+                </a>
+              </div>
+              <div
+                className="place-card__info"
+              >
+                <div
+                  className="place-card__price-wrapper"
+                >
+                  <div
+                    className="place-card__price"
+                  >
+                    <b
+                      className="place-card__price-value"
+                    >
+                      €
+                      140
+                    </b>
+                    <span
+                      className="place-card__price-text"
+                    >
+                      / night
+                    </span>
+                  </div>
+                  <button
+                    className="place-card__bookmark-button button"
+                    type="button"
+                  >
+                    <svg
+                      className="place-card__bookmark-icon"
+                      height="19"
+                      width="18"
+                    >
+                      <use
+                        xlinkHref="#icon-bookmark"
+                      />
+                    </svg>
+                    <span
+                      className="visually-hidden"
+                    >
+                      To bookmarks
+                    </span>
+                  </button>
+                </div>
+                <div
+                  className="place-card__rating rating"
+                >
+                  <div
+                    className="place-card__stars rating__stars"
+                  >
+                    <span
+                      style={
+                        Object {
+                          "width": "93%",
+                        }
+                      }
+                    />
+                    <span
+                      className="visually-hidden"
+                    >
+                      Rating
+                    </span>
+                  </div>
+                </div>
+                <h2
+                  className="place-card__name"
+                >
+                  <a
+                    href="#"
+                  >
+                    MockDescription
+                  </a>
                 </h2>
                 <p
                   className="place-card__type"
@@ -301,5 +672,6 @@ exports[`Render App 1`] = `
       </div>
     </div>
   </main>
+  ;
 </div>
 `;
