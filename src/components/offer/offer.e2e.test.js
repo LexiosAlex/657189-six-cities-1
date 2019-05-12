@@ -17,26 +17,30 @@ Enzyme.configure({adapter: new Adapter()});
 
 it(`Simulate click events in Offer`, () => {
   const clickHandler = jest.fn();
+  const clickDeActivateHandler = jest.fn();
+  const clickPreventDefault = jest.fn();
   const placeElement = mount(<Offer
     place={placeMock}
-    onActiveCard={jest.fn()}
-    onDeactiveCard={jest.fn()}
+    onActiveCard={clickHandler}
+    onDeactiveCard={clickDeActivateHandler}
   />);
 
   const placeHeader = placeElement.find(`h2.place-card__name`);
   placeHeader.simulate(`click`, {preventDefault() {}});
   expect(clickHandler).toHaveBeenCalledTimes(0);
 
-  const activateCard = jest.fn();
   const placeImage = placeElement.find(`img.place-card__image`);
   placeImage.simulate(`click`, {
-    preventDefault: activateCard,
+    preventDefault: clickPreventDefault,
   });
-  expect(placeImage).toHaveBeenCalledTimes(1);
+  expect(clickHandler).toHaveBeenCalledTimes(1);
+  expect(clickPreventDefault).toHaveBeenCalledTimes(1);
+  expect(clickHandler.mock.calls[0][0]).toBe(placeMock);
 
   const placeCard = placeElement.find(`article.cities__place-card`);
-  placeCard.simulate(`mouseover`, {
-    preventDefault: activateCard,
-  });
-  expect(placeCard).toHaveBeenCalledTimes(1);
+  placeCard.simulate(`mouseover`, {});
+  expect(clickDeActivateHandler).toHaveBeenCalledTimes(1);
 });
+
+// expect(someMockFunction.mock.calls[0][0]).toBe('first arg');
+

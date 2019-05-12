@@ -11,5 +11,5 @@ export const Location = (props) => {
 };
 
 Location.propTypes = {
-  loc: PropTypes.object,
+  loc: PropTypes.object.isRequired,
 };

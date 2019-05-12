@@ -10,19 +10,8 @@ export class App extends Component {
       activeCard: null,
     };
   }
-
-  _activateCard(onActiveCard, onDeactiveCard) {
-    const cities = this.props.cities;
-    const places = this.props.places;
-    return <MainPage
-      cities={cities}
-      places={places}
-      onActiveCard={onActiveCard}
-      onDeactiveCard={onDeactiveCard}
-    />;
-  }
-
   render() {
+    const {cities, places} = this.props;
     return <div>
       <div style={{display: `none`}}>
         <svg xmlns="http://www.w3.org/2000/svg"><symbol id="icon-arrow-select" viewBox="0 0 7 4"><path fillRule="evenodd" clipRule="evenodd" d="M0 0l3.5 2.813L7 0v1.084L3.5 4 0 1.084V0z"></path></symbol><symbol id="
@@ -51,16 +40,20 @@ export class App extends Component {
           </div>
         </div>
       </header>
-      {this._activateCard((card) => {
-        this.setState({
-          activeCard: card
-        });
-      }, ()=> {
-        this.setState({
-          activeCard: null
-        });
-      })
-      };
+      <MainPage
+        cities={cities}
+        places={places}
+        onActiveCard={(card) => {
+          this.setState({
+            activeCard: card
+          });
+        }}
+        onDeactiveCard={()=> {
+          this.setState({
+            activeCard: null
+          });
+        }}
+      />;
     </div>;
   }
 }
