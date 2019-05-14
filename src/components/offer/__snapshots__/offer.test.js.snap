@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render Place 1`] = `
+exports[`Render offer 1`] = `
 <article
   className="cities__place-card place-card"
+  onMouseOut={[MockFunction]}
+  onMouseOver={[Function]}
 >
   <div
     className="cities__image-wrapper place-card__image-wrapper"
@@ -14,6 +16,8 @@ exports[`Render Place 1`] = `
         alt="Place image"
         className="place-card__image"
         height="200"
+        onClick={[Function]}
+        src="img/apartment-01.jpg"
         width="260"
       />
     </a>
@@ -31,6 +35,7 @@ exports[`Render Place 1`] = `
           className="place-card__price-value"
         >
           €
+          140
         </b>
         <span
           className="place-card__price-text"
@@ -83,7 +88,9 @@ exports[`Render Place 1`] = `
     >
       <a
         href="#"
-      />
+      >
+        MockDescription
+      </a>
     </h2>
     <p
       className="place-card__type"
