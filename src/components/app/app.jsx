@@ -70,5 +70,6 @@ App.propTypes = {
     img: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    mapCoordinates: PropTypes.array.isRequired,
   })).isRequired,
 };

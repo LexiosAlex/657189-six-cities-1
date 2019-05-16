@@ -11,6 +11,7 @@ const placeMock = {
   img: `img/apartment-01.jpg`,
   price: `140`,
   description: `MockDescription`,
+  mapCoordinates: [52.3909553943508, 4.85309666406198],
 };
 
 Enzyme.configure({adapter: new Adapter()});
