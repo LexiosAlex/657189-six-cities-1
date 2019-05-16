@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 
 import {Location} from '../location/location.jsx';
 import {OffersList} from "../offers-list/offers-list.jsx";
+import {Map} from "../map/map.jsx";
 
 export const MainPage = (props) => {
-  const {cities, places, onActiveCard, onDeactiveCard} = props;
+  const {cities, places, onActiveCard, onDeactiveCard, activeCard} = props;
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <div className="cities tabs">
@@ -42,7 +43,13 @@ export const MainPage = (props) => {
           />
         </section>
         <div className="cities__right-section">
-          <section className="cities__map map"></section>
+          <section className="cities__map map">
+            <Map
+              activeCard={activeCard}
+              places={places}
+            >
+            </Map>
+          </section>
         </div>
       </div>
     </div>
@@ -60,7 +67,18 @@ MainPage.propTypes = {
     img: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    mapCoordinates: PropTypes.array.isRequired,
   })).isRequired,
   onActiveCard: PropTypes.func.isRequired,
   onDeactiveCard: PropTypes.func.isRequired,
+  activeCard: PropTypes.shape({
+    id: PropTypes.number,
+    premium: PropTypes.bool,
+    img: PropTypes.string,
+    price: PropTypes.string,
+    description: PropTypes.string,
+    mapCoordinates: PropTypes.array,
+  }),
 };
+
+

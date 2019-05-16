@@ -41,6 +41,7 @@ export class App extends Component {
         </div>
       </header>
       <MainPage
+        activeCard={this.state.activeCard}
         cities={cities}
         places={places}
         onActiveCard={(card) => {

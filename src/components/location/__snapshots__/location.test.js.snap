@@ -8,7 +8,9 @@ exports[`Render Location 1`] = `
     className=" locations__item-link tabs__item"
     href="#"
   >
-    <span />
+    <span>
+      Paris
+    </span>
   </a>
 </li>
 `;

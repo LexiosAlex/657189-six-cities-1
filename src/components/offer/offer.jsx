@@ -9,7 +9,8 @@ const PremiumStatus = () => (
 
 export const Offer = (props) => {
   const {place, onActiveCard, onDeactiveCard} = props;
-  const getActiveCard = () => {
+  const getActiveCard = (evt) => {
+    evt.preventDefault();
     onActiveCard(place);
   };
 
@@ -54,6 +55,7 @@ Offer.propTypes = {
     img: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    mapCoordinates: PropTypes.array.isRequired,
   }).isRequired,
   onActiveCard: PropTypes.func.isRequired,
   onDeactiveCard: PropTypes.func.isRequired,
