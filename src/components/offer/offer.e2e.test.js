@@ -41,6 +41,4 @@ it(`Simulate events in Offer`, () => {
   const placeCard = placeElement.find(`article.cities__place-card`);
   placeCard.simulate(`mouseover`, {preventDefault() {}});
   expect(clickHandler).toHaveBeenCalledTimes(2);
-  placeCard.simulate(`mouseleave`, {preventDefault() {}});
-  expect(clickDeActivateHandler).toHaveBeenCalledTimes(1);
 });

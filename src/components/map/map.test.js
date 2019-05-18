@@ -3,6 +3,10 @@ import renderer from 'react-test-renderer';
 
 import {Map} from "./map";
 
+const div = global.document.createElement(`div`);
+div.setAttribute(`id`, `map`);
+global.document.body.appendChild(div);
+
 const offersMock = [
   {
     id: 2,

@@ -2,6 +2,10 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {MainPage} from './main-page.jsx';
 
+const div = global.document.createElement(`div`);
+div.setAttribute(`id`, `map`);
+global.document.body.appendChild(div);
+
 const cities = [
   {
     city: `Paris`
