@@ -2,6 +2,10 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {App} from './app.jsx';
 
+const div = global.document.createElement(`div`);
+div.setAttribute(`id`, `map`);
+global.document.body.appendChild(div);
+
 const cities = [
   {
     city: `Paris`
@@ -31,6 +35,7 @@ const offers = [
     img: `img/apartment-01.jpg`,
     price: `140`,
     description: `MockDescription`,
+    mapCoordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: 2,
@@ -38,6 +43,7 @@ const offers = [
     img: `img/apartment-01.jpg`,
     price: `140`,
     description: `MockDescription`,
+    mapCoordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: 3,
@@ -45,6 +51,7 @@ const offers = [
     img: `img/apartment-01.jpg`,
     price: `140`,
     description: `MockDescription`,
+    mapCoordinates: [52.3909553943508, 4.85309666406198],
   },
   {
     id: 4,
@@ -52,6 +59,7 @@ const offers = [
     img: `img/apartment-01.jpg`,
     price: `140`,
     description: `MockDescription`,
+    mapCoordinates: [52.3909553943508, 4.85309666406198],
   }
 ];
 

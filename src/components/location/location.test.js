@@ -9,7 +9,7 @@ const cityLocation = {
 it(`Render Location`, () => {
   const tree = renderer
     .create(<Location
-      loc={cityLocation.city}
+      loc={cityLocation}
     />)
     .toJSON();
 

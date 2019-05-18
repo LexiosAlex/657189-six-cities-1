@@ -41,6 +41,7 @@ export class App extends Component {
         </div>
       </header>
       <MainPage
+        activeCard={this.state.activeCard}
         cities={cities}
         places={places}
         onActiveCard={(card) => {
@@ -69,5 +70,6 @@ App.propTypes = {
     img: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
+    mapCoordinates: PropTypes.array.isRequired,
   })).isRequired,
 };

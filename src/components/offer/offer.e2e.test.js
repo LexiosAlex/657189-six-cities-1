@@ -11,11 +11,12 @@ const placeMock = {
   img: `img/apartment-01.jpg`,
   price: `140`,
   description: `MockDescription`,
+  mapCoordinates: [52.3909553943508, 4.85309666406198],
 };
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`Simulate click events in Offer`, () => {
+it(`Simulate events in Offer`, () => {
   const clickHandler = jest.fn();
   const clickDeActivateHandler = jest.fn();
   const clickPreventDefault = jest.fn();
@@ -33,14 +34,11 @@ it(`Simulate click events in Offer`, () => {
   placeImage.simulate(`click`, {
     preventDefault: clickPreventDefault,
   });
-  expect(clickHandler).toHaveBeenCalledTimes(1);
   expect(clickPreventDefault).toHaveBeenCalledTimes(1);
+  expect(clickHandler).toHaveBeenCalledTimes(1);
   expect(clickHandler.mock.calls[0][0]).toBe(placeMock);
 
   const placeCard = placeElement.find(`article.cities__place-card`);
-  placeCard.simulate(`mouseover`, {});
-  expect(clickDeActivateHandler).toHaveBeenCalledTimes(1);
+  placeCard.simulate(`mouseover`, {preventDefault() {}});
+  expect(clickHandler).toHaveBeenCalledTimes(2);
 });
-
-// expect(someMockFunction.mock.calls[0][0]).toBe('first arg');
-
