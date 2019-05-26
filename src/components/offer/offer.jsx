@@ -8,23 +8,23 @@ const PremiumStatus = () => (
 );
 
 export const Offer = (props) => {
-  const {place, onActiveCard, onDeactiveCard} = props;
+  const {offer, onActiveCard, onDeactiveCard} = props;
   const getActiveCard = (evt) => {
     evt.preventDefault();
-    onActiveCard(place);
+    onActiveCard(offer);
   };
 
   return <article className="cities__place-card place-card" onMouseOver={getActiveCard} onMouseOut={onDeactiveCard}>
-    {place.premium && <PremiumStatus/>}
+    {offer.isPremium && <PremiumStatus/>}
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
-        <img className="place-card__image" src={place.img} onClick={getActiveCard} width="260" height="200" alt="Place image"></img>
+        <img className="place-card__image" src={offer.img} onClick={getActiveCard} width="260" height="200" alt="Place image"></img>
       </a>
     </div>
     <div className="place-card__info">
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
-          <b className="place-card__price-value">&euro;{place.price}</b>
+          <b className="place-card__price-value">&euro;{offer.price}</b>
           <span className="place-card__price-text">&#47;&nbsp;night</span>
         </div>
         <button className="place-card__bookmark-button button" type="button">
@@ -36,27 +36,35 @@ export const Offer = (props) => {
       </div>
       <div className="place-card__rating rating">
         <div className="place-card__stars rating__stars">
-          <span style={{width: `93%`}}></span>
+          <span style={{width: `${offer.rating}%`}}></span>
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#">{place.description}</a>
+        <a href="#">{offer.description}</a>
       </h2>
-      <p className="place-card__type">{place.type}</p>
+      <p className="place-card__type">{offer.type}</p>
     </div>
   </article>;
 };
 
 Offer.propTypes = {
-  place: PropTypes.shape({
+  offer: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    premium: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
     img: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    mapCoordinates: PropTypes.array.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
+    mapCoordinates: PropTypes.arrayOf(PropTypes.number),
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+    }).isRequired,
   }).isRequired,
   onActiveCard: PropTypes.func.isRequired,
   onDeactiveCard: PropTypes.func.isRequired,
 };
+
