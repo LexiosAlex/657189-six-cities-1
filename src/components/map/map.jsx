@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import PropTypes from "prop-types";
 import leaflet from "leaflet";
 
-const city = [52.38333, 4.9];
-
 let LeafIcon = leaflet.Icon.extend({
   options: {
     iconSize: [30, 30]
@@ -34,72 +32,82 @@ const mapStyle = {
 export class Map extends Component {
   constructor(props) {
     super(props);
+
     this.renderedMap = null;
     this.mapPinsGroup = null;
     this.activeMapPin = null;
 
-    this.state = {
-      activePin: null,
-    };
   }
-  unRenderMarkers(map) {
+
+  unRenderMarkers() {
     if (this.mapPinsGroup) {
       this.mapPinsGroup.clearLayers();
       this.mapPinsGroup = null;
     }
 
     if (this.activeMapPin) {
-      map.removeLayer(this.activeMapPin);
+      this.renderedMap.removeLayer(this.activeMapPin);
       this.activeMapPin = null;
     }
   }
 
-  renderMarkers(map) {
+  renderMarkers() {
+    const {activeCard, offers} = this.props;
     let mapPins = [];
 
-    if (this.props.activeCard) {
-      this.props.places.forEach((it)=> {
-        if (it.id !== this.props.activeCard.id) {
+    if (activeCard) {
+      offers.forEach((it)=> {
+        if (it.id !== activeCard.id) {
           const mapMarker = leaflet.marker(it.mapCoordinates, {icon: standartIcon});
           mapPins.push(mapMarker);
         }
       });
 
-      this.activeMapPin = leaflet.marker(this.props.activeCard.mapCoordinates, {icon: activeIcon});
-      this.activeMapPin.addTo(map);
+      this.activeMapPin = leaflet.marker(activeCard.mapCoordinates, {icon: activeIcon});
+      this.activeMapPin.addTo(this.renderedMap);
     } else {
 
-      this.props.places.forEach((it)=> {
+      offers.forEach((it)=> {
         const mapMarker = leaflet.marker(it.mapCoordinates, {icon: standartIcon});
         mapPins.push(mapMarker);
       });
 
     }
     this.mapPinsGroup = leaflet.layerGroup(mapPins);
-    this.mapPinsGroup.addTo(map);
+    this.mapPinsGroup.addTo(this.renderedMap);
   }
 
-  componentDidMount() {
+  renderMap() {
+    const {city} = this.props;
     this.renderedMap = leaflet.map(`map`, {
-      center: city,
+      center: city.mapCoordinates,
       zoom: mapZoom,
       zoomControl: false,
       marker: true
     });
-    this.renderedMap .setView(city, mapZoom);
+    this.renderedMap.setView(city.mapCoordinates, mapZoom);
 
     leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(this.renderedMap);
+  }
 
-    this.renderMarkers(this.renderedMap);
+  changeMapCoords() {
+    const {city} = this.props;
+    this.renderedMap.panTo(new leaflet.LatLng(city.mapCoordinates[0], city.mapCoordinates[1]));
+  }
+
+  componentDidMount() {
+    this.renderMap();
+    this.renderMarkers();
   }
 
   componentDidUpdate() {
-    this.unRenderMarkers(this.renderedMap);
-    this.renderMarkers(this.renderedMap);
+    this.changeMapCoords();
+    this.unRenderMarkers();
+    this.renderMarkers();
   }
 
   render() {
@@ -108,20 +116,38 @@ export class Map extends Component {
 }
 
 Map.propTypes = {
-  places: PropTypes.arrayOf(PropTypes.shape({
+  city: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+  }).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    premium: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
     img: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    mapCoordinates: PropTypes.array.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
+    mapCoordinates: PropTypes.arrayOf(PropTypes.number),
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+    }).isRequired,
   })).isRequired,
   activeCard: PropTypes.shape({
-    id: PropTypes.number,
-    premium: PropTypes.bool,
-    img: PropTypes.string,
-    price: PropTypes.string,
-    description: PropTypes.string,
-    mapCoordinates: PropTypes.array,
-  }),
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    img: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
+    mapCoordinates: PropTypes.arrayOf(PropTypes.number),
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+    }).isRequired,
+  })
 };

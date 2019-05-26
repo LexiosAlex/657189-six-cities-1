@@ -5,13 +5,20 @@ import {Offer} from "./offer.jsx";
 
 configure({adapter: new Adapter()});
 
-const placeMock = {
+const offer = {
   id: 1,
-  premium: false,
+  title: `Amsterdam room`,
+  isPremium: false,
   img: `img/apartment-01.jpg`,
   price: `140`,
+  rating: `90`,
   description: `MockDescription`,
+  isBookmarked: false,
   mapCoordinates: [52.3909553943508, 4.85309666406198],
+  city: {
+    name: `Amsterdam`,
+    mapCoordinates: [52.38333, 4.9],
+  },
 };
 
 Enzyme.configure({adapter: new Adapter()});
@@ -21,7 +28,7 @@ it(`Simulate events in Offer`, () => {
   const clickDeActivateHandler = jest.fn();
   const clickPreventDefault = jest.fn();
   const placeElement = mount(<Offer
-    place={placeMock}
+    offer={offer}
     onActiveCard={clickHandler}
     onDeactiveCard={clickDeActivateHandler}
   />);
@@ -36,7 +43,7 @@ it(`Simulate events in Offer`, () => {
   });
   expect(clickPreventDefault).toHaveBeenCalledTimes(1);
   expect(clickHandler).toHaveBeenCalledTimes(1);
-  expect(clickHandler.mock.calls[0][0]).toBe(placeMock);
+  expect(clickHandler.mock.calls[0][0]).toBe(offer);
 
   const placeCard = placeElement.find(`article.cities__place-card`);
   placeCard.simulate(`mouseover`, {preventDefault() {}});

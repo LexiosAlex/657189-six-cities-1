@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
+import {connect} from 'react-redux';
+import {ActionCreator} from "../../reducer";
 
 import {MainPage} from "../main-page/main-page.jsx";
-export class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
@@ -11,7 +13,7 @@ export class App extends Component {
     };
   }
   render() {
-    const {cities, places} = this.props;
+    const {cities, places, onCityClick, city, offers} = this.props;
     return <div>
       <div style={{display: `none`}}>
         <svg xmlns="http://www.w3.org/2000/svg"><symbol id="icon-arrow-select" viewBox="0 0 7 4"><path fillRule="evenodd" clipRule="evenodd" d="M0 0l3.5 2.813L7 0v1.084L3.5 4 0 1.084V0z"></path></symbol><symbol id="
@@ -44,6 +46,13 @@ export class App extends Component {
         activeCard={this.state.activeCard}
         cities={cities}
         places={places}
+        offers={offers}
+        city={city}
+        onCityClick={(currentCity) => {
+          const selectedCityOffer = places.filter((it) => it.city.name === currentCity);
+
+          onCityClick(selectedCityOffer[0].city, places);
+        }}
         onActiveCard={(card) => {
           this.setState({
             activeCard: card
@@ -60,16 +69,55 @@ export class App extends Component {
 }
 
 App.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.shape({
-    city: PropTypes.string.isRequired,
-    active: PropTypes.bool,
-  })).isRequired,
+  city: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    mapCoordinates: PropTypes.arrayOf(PropTypes.number),
+  }).isRequired,
+  onCityClick: PropTypes.func.isRequired,
+  cities: PropTypes.array.isRequired,
   places: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    premium: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
     img: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    mapCoordinates: PropTypes.array.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
+    mapCoordinates: PropTypes.arrayOf(PropTypes.number),
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+    }).isRequired,
+  })).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    img: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
+    mapCoordinates: PropTypes.arrayOf(PropTypes.number),
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+    }).isRequired,
   })).isRequired,
 };
+
+const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
+  city: state.city,
+  offers: state.offers,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCityClick: (selectedCity, places) => {
+    dispatch(ActionCreator.changeCity(selectedCity));
+    dispatch(ActionCreator.changeOffers(selectedCity, places));
+  }
+});
+
+export {App};
+export const WrappedApp = connect(mapStateToProps, mapDispatchToProps)(App);

@@ -6,13 +6,13 @@ import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
 
 export const MainPage = (props) => {
-  const {cities, places, onActiveCard, onDeactiveCard, activeCard} = props;
+  const {cities, offers, onActiveCard, onDeactiveCard, activeCard, city, places, onCityClick} = props;
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <div className="cities tabs">
       <section className="locations container">
         <ul className="locations__list tabs__list">
-          {cities.map((it, i) => <Location key={i} loc={it} />)}
+          {cities.map((it, i) => <Location key={`city-${i}`} loc={it} offers={offers} city={city} onCityClick={onCityClick}/>)}
         </ul>
       </section>
     </div>
@@ -20,7 +20,7 @@ export const MainPage = (props) => {
       <div className="cities__places-container container">
         <section className="cities__places places">
           <h2 className="visually-hidden">Places</h2>
-          <b className="places__found">312 places to stay in Amsterdam</b>
+          <b className="places__found">{offers.length} places to stay in {city.name}</b>
           <form className="places__sorting" action="#" method="get">
             <span className="places__sorting-caption">Sort by</span>
             <span className="places__sorting-type" tabIndex="0">
@@ -37,6 +37,7 @@ export const MainPage = (props) => {
             </ul>
           </form>
           <OffersList
+            offers={offers}
             places={places}
             onActiveCard={onActiveCard}
             onDeactiveCard={onDeactiveCard}
@@ -46,7 +47,9 @@ export const MainPage = (props) => {
           <section className="cities__map map">
             <Map
               activeCard={activeCard}
+              offers={offers}
               places={places}
+              city={city}
             >
             </Map>
           </section>
@@ -57,28 +60,57 @@ export const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.shape({
-    city: PropTypes.string.isRequired,
-    active: PropTypes.bool,
-  })).isRequired,
+  city: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    mapCoordinates: PropTypes.arrayOf(PropTypes.number),
+  }).isRequired,
+  onCityClick: PropTypes.func.isRequired,
+  cities: PropTypes.array.isRequired,
   places: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
-    premium: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
     img: PropTypes.string.isRequired,
     price: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    mapCoordinates: PropTypes.array.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
+    mapCoordinates: PropTypes.arrayOf(PropTypes.number),
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+    }).isRequired,
+  })).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    img: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
+    mapCoordinates: PropTypes.arrayOf(PropTypes.number),
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+    }).isRequired,
   })).isRequired,
   onActiveCard: PropTypes.func.isRequired,
   onDeactiveCard: PropTypes.func.isRequired,
   activeCard: PropTypes.shape({
-    id: PropTypes.number,
-    premium: PropTypes.bool,
-    img: PropTypes.string,
-    price: PropTypes.string,
-    description: PropTypes.string,
-    mapCoordinates: PropTypes.array,
-  }),
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    img: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
+    rating: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    isBookmarked: PropTypes.bool.isRequired,
+    mapCoordinates: PropTypes.arrayOf(PropTypes.number),
+    city: PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+    }).isRequired,
+  })
 };
-
-

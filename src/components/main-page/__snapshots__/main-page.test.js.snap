@@ -20,6 +20,7 @@ exports[`Render MainPage 1`] = `
       >
         <li
           className="locations__item"
+          onClick={[Function]}
         >
           <a
             className=" locations__item-link tabs__item"
@@ -32,6 +33,7 @@ exports[`Render MainPage 1`] = `
         </li>
         <li
           className="locations__item"
+          onClick={[Function]}
         >
           <a
             className=" locations__item-link tabs__item"
@@ -44,6 +46,7 @@ exports[`Render MainPage 1`] = `
         </li>
         <li
           className="locations__item"
+          onClick={[Function]}
         >
           <a
             className=" locations__item-link tabs__item"
@@ -56,6 +59,7 @@ exports[`Render MainPage 1`] = `
         </li>
         <li
           className="locations__item"
+          onClick={[Function]}
         >
           <a
             className="tabs__item--active locations__item-link tabs__item"
@@ -68,6 +72,7 @@ exports[`Render MainPage 1`] = `
         </li>
         <li
           className="locations__item"
+          onClick={[Function]}
         >
           <a
             className=" locations__item-link tabs__item"
@@ -80,6 +85,7 @@ exports[`Render MainPage 1`] = `
         </li>
         <li
           className="locations__item"
+          onClick={[Function]}
         >
           <a
             className=" locations__item-link tabs__item"
@@ -110,7 +116,9 @@ exports[`Render MainPage 1`] = `
         <b
           className="places__found"
         >
-          312 places to stay in Amsterdam
+          4
+           places to stay in 
+          Amsterdam
         </b>
         <form
           action="#"
@@ -240,7 +248,7 @@ exports[`Render MainPage 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "93%",
+                        "width": "90%",
                       }
                     }
                   />
@@ -343,7 +351,7 @@ exports[`Render MainPage 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "93%",
+                        "width": "90%",
                       }
                     }
                   />
@@ -446,7 +454,7 @@ exports[`Render MainPage 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "93%",
+                        "width": "90%",
                       }
                     }
                   />
@@ -542,7 +550,7 @@ exports[`Render MainPage 1`] = `
                   <span
                     style={
                       Object {
-                        "width": "93%",
+                        "width": "90%",
                       }
                     }
                   />

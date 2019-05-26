@@ -1,21 +1,34 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Offers from "./mocks/offers.js";
-import Cities from "./mocks/cities.js";
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
 
-import {App} from "./components/app/app.jsx";
+import {reducer} from './reducer';
+import {WrappedApp} from "./components/app/app.jsx";
+
+const getCities = (offers) => {
+  let cities = new Set();
+  offers.forEach((it)=> {
+    cities.add(it.city.name);
+  });
+  return Array.from(cities);
+};
 
 const init = () => {
   const settings = {
-    citiesArray: Cities,
+    citiesArray: getCities(Offers),
     placesArray: Offers,
   };
+  const store = createStore(reducer);
 
   ReactDOM.render(
-      <App
-        cities={settings.citiesArray}
-        places={settings.placesArray}
-      />,
+      <Provider store={store}>
+        <WrappedApp
+          cities={settings.citiesArray}
+          places={settings.placesArray}
+        />
+      </Provider>,
       document.getElementById(`root`)
   );
 };

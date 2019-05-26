@@ -3,13 +3,14 @@
 exports[`Render Location 1`] = `
 <li
   className="locations__item"
+  onClick={[Function]}
 >
   <a
-    className=" locations__item-link tabs__item"
+    className="tabs__item--active locations__item-link tabs__item"
     href="#"
   >
     <span>
-      Paris
+      Amsterdam
     </span>
   </a>
 </li>
