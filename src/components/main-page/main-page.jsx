@@ -4,9 +4,11 @@ import PropTypes from "prop-types";
 import {Location} from '../location/location.jsx';
 import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
+import {withHoveredCard} from "../../hocs/withHoveredCard/withHoveredCard.jsx";
+import {withActiveCard} from "../../hocs/withActiveCard/withActiveCard.jsx";
 
-export const MainPage = (props) => {
-  const {cities, offers, onActiveCard, onDeactiveCard, activeCard, city, places, onCityClick} = props;
+const MainPage = (props) => {
+  const {cities, offers, onCardMouseEnter, onCardMouseOut, hoveredCard, city, places, onCityClick, onCardClick} = props;
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <div className="cities tabs">
@@ -39,14 +41,15 @@ export const MainPage = (props) => {
           <OffersList
             offers={offers}
             places={places}
-            onActiveCard={onActiveCard}
-            onDeactiveCard={onDeactiveCard}
+            onCardClick={onCardClick}
+            onCardMouseEnter={onCardMouseEnter}
+            onCardMouseOut={onCardMouseOut}
           />
         </section>
         <div className="cities__right-section">
           <section className="cities__map map">
             <Map
-              activeCard={activeCard}
+              hoveredCard={hoveredCard}
               offers={offers}
               places={places}
               city={city}
@@ -96,9 +99,9 @@ MainPage.propTypes = {
       mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
     }).isRequired,
   })).isRequired,
-  onActiveCard: PropTypes.func.isRequired,
-  onDeactiveCard: PropTypes.func.isRequired,
-  activeCard: PropTypes.shape({
+  onCardMouseEnter: PropTypes.func.isRequired,
+  onCardMouseOut: PropTypes.func.isRequired,
+  hoveredCard: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
@@ -112,5 +115,8 @@ MainPage.propTypes = {
       name: PropTypes.string.isRequired,
       mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
     }).isRequired,
-  })
+  }),
+  onCardClick: PropTypes.func.isRequired
 };
+
+export default withActiveCard(withHoveredCard(MainPage));

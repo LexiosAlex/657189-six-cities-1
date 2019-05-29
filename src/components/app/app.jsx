@@ -3,14 +3,10 @@ import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import {ActionCreator} from "../../reducer";
 
-import {MainPage} from "../main-page/main-page.jsx";
+import MainPage from "../main-page/main-page.jsx";
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      activeCard: null,
-    };
   }
   render() {
     const {cities, places, onCityClick, city, offers} = this.props;
@@ -43,7 +39,6 @@ class App extends Component {
         </div>
       </header>
       <MainPage
-        activeCard={this.state.activeCard}
         cities={cities}
         places={places}
         offers={offers}
@@ -52,16 +47,6 @@ class App extends Component {
           const selectedCityOffer = places.filter((it) => it.city.name === currentCity);
 
           onCityClick(selectedCityOffer[0].city, places);
-        }}
-        onActiveCard={(card) => {
-          this.setState({
-            activeCard: card
-          });
-        }}
-        onDeactiveCard={()=> {
-          this.setState({
-            activeCard: null
-          });
         }}
       />;
     </div>;

@@ -25,27 +25,31 @@ Enzyme.configure({adapter: new Adapter()});
 
 it(`Simulate events in Offer`, () => {
   const clickHandler = jest.fn();
-  const clickDeActivateHandler = jest.fn();
+  const hoverHandler = jest.fn();
+  const hoverDeActivateHandler = jest.fn();
+  const hoverPreventDefaault = jest.fn();
   const clickPreventDefault = jest.fn();
   const placeElement = mount(<Offer
     offer={offer}
-    onActiveCard={clickHandler}
-    onDeactiveCard={clickDeActivateHandler}
+    onCardMouseEnter={hoverHandler}
+    onCardMouseOut={hoverDeActivateHandler}
+    onCardClick={clickHandler}
   />);
 
   const placeHeader = placeElement.find(`h2.place-card__name`);
-  placeHeader.simulate(`click`, {preventDefault() {}});
-  expect(clickHandler).toHaveBeenCalledTimes(0);
-
-  const placeImage = placeElement.find(`img.place-card__image`);
-  placeImage.simulate(`click`, {
+  placeHeader.simulate(`click`, {
     preventDefault: clickPreventDefault,
   });
+  expect(clickHandler).toHaveBeenCalledTimes(1);
   expect(clickPreventDefault).toHaveBeenCalledTimes(1);
   expect(clickHandler).toHaveBeenCalledTimes(1);
   expect(clickHandler.mock.calls[0][0]).toBe(offer);
 
   const placeCard = placeElement.find(`article.cities__place-card`);
-  placeCard.simulate(`mouseover`, {preventDefault() {}});
-  expect(clickHandler).toHaveBeenCalledTimes(2);
+  placeCard.simulate(`mouseover`, {
+    preventDefault: hoverPreventDefaault,
+  });
+  expect(hoverPreventDefaault).toHaveBeenCalledTimes(1);
+  expect(hoverHandler).toHaveBeenCalledTimes(1);
+  expect(hoverHandler.mock.calls[0][0]).toBe(offer);
 });

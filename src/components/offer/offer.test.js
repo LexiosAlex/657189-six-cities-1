@@ -22,8 +22,9 @@ it(`Render offer`, () => {
   const tree = renderer
     .create(<Offer
       offer={offer}
-      onActiveCard={jest.fn()}
-      onDeactiveCard={jest.fn()}
+      onCardMouseEnter={jest.fn()}
+      onCardMouseOut={jest.fn()}
+      onCardClick={jest.fn()}
     />)
     .toJSON();
 

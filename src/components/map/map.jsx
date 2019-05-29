@@ -52,18 +52,18 @@ export class Map extends Component {
   }
 
   renderMarkers() {
-    const {activeCard, offers} = this.props;
+    const {hoveredCard, offers} = this.props;
     let mapPins = [];
 
-    if (activeCard) {
+    if (hoveredCard) {
       offers.forEach((it)=> {
-        if (it.id !== activeCard.id) {
+        if (it.id !== hoveredCard.id) {
           const mapMarker = leaflet.marker(it.mapCoordinates, {icon: standartIcon});
           mapPins.push(mapMarker);
         }
       });
 
-      this.activeMapPin = leaflet.marker(activeCard.mapCoordinates, {icon: activeIcon});
+      this.activeMapPin = leaflet.marker(hoveredCard.mapCoordinates, {icon: activeIcon});
       this.activeMapPin.addTo(this.renderedMap);
     } else {
 
@@ -135,7 +135,7 @@ Map.propTypes = {
       mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
     }).isRequired,
   })).isRequired,
-  activeCard: PropTypes.shape({
+  hoveredCard: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
