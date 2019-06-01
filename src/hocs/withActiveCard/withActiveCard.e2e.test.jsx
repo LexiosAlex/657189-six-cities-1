@@ -11,13 +11,13 @@ const MockWrapped = withActiveCard(Mock);
 it(`activating offer card properly`, () => {
   const wrapper = shallow(<MockWrapped
     activeCard={{}}
-    onCardClick={jest.fn()}
+    onOfferImgClick={jest.fn()}
   />);
 
 
   expect(wrapper.state().activeCard).toEqual(null);
   expect(wrapper.props().activeCard).toEqual(null);
-  wrapper.props().onCardClick({
+  wrapper.props().onOfferImgClick({
     id: 1,
     title: `Amsterdam room`,
     isPremium: false,

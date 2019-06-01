@@ -87,22 +87,6 @@ const activeCard = {
   },
 };
 
-const hoveredCard = {
-  id: 4,
-  title: `Amsterdam room`,
-  isPremium: false,
-  img: `img/apartment-01.jpg`,
-  price: `140`,
-  rating: `90`,
-  description: `MockDescription`,
-  isBookmarked: false,
-  mapCoordinates: [52.3809553943508, 4.939309666406198],
-  city: {
-    name: `Amsterdam`,
-    mapCoordinates: [52.38333, 4.9],
-  },
-};
-
 const places = offers;
 const city = {
   name: `Amsterdam`,
@@ -113,15 +97,12 @@ it(`Render MainPage`, () => {
   const tree = renderer
     .create(<MainPage
       activeCard={activeCard}
-      hoveredCard={hoveredCard}
       cities={cities}
       offers={offers}
       city={city}
       places={places}
       onCityClick={jest.fn()}
       onCardClick={jest.fn()}
-      onCardMouseEnter={jest.fn()}
-      onCardMouseOut={jest.fn()}
     />)
     .toJSON();
 

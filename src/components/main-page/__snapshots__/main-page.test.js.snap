@@ -179,8 +179,6 @@ exports[`Render MainPage 1`] = `
         >
           <article
             className="cities__place-card place-card"
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
           >
             <div
               className="cities__image-wrapper place-card__image-wrapper"
@@ -192,6 +190,7 @@ exports[`Render MainPage 1`] = `
                   alt="Place image"
                   className="place-card__image"
                   height="200"
+                  onClick={[Function]}
                   src="img/apartment-01.jpg"
                   width="260"
                 />
@@ -263,7 +262,6 @@ exports[`Render MainPage 1`] = `
               >
                 <a
                   href="#"
-                  onClick={[Function]}
                 >
                   MockDescription
                 </a>
@@ -275,8 +273,6 @@ exports[`Render MainPage 1`] = `
           </article>
           <article
             className="cities__place-card place-card"
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
           >
             <div
               className="place-card__mark"
@@ -295,6 +291,7 @@ exports[`Render MainPage 1`] = `
                   alt="Place image"
                   className="place-card__image"
                   height="200"
+                  onClick={[Function]}
                   src="img/apartment-01.jpg"
                   width="260"
                 />
@@ -366,7 +363,6 @@ exports[`Render MainPage 1`] = `
               >
                 <a
                   href="#"
-                  onClick={[Function]}
                 >
                   MockDescription
                 </a>
@@ -378,8 +374,6 @@ exports[`Render MainPage 1`] = `
           </article>
           <article
             className="cities__place-card place-card"
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
           >
             <div
               className="place-card__mark"
@@ -398,6 +392,7 @@ exports[`Render MainPage 1`] = `
                   alt="Place image"
                   className="place-card__image"
                   height="200"
+                  onClick={[Function]}
                   src="img/apartment-01.jpg"
                   width="260"
                 />
@@ -469,7 +464,6 @@ exports[`Render MainPage 1`] = `
               >
                 <a
                   href="#"
-                  onClick={[Function]}
                 >
                   MockDescription
                 </a>
@@ -481,8 +475,6 @@ exports[`Render MainPage 1`] = `
           </article>
           <article
             className="cities__place-card place-card"
-            onMouseOut={[Function]}
-            onMouseOver={[Function]}
           >
             <div
               className="cities__image-wrapper place-card__image-wrapper"
@@ -494,6 +486,7 @@ exports[`Render MainPage 1`] = `
                   alt="Place image"
                   className="place-card__image"
                   height="200"
+                  onClick={[Function]}
                   src="img/apartment-01.jpg"
                   width="260"
                 />
@@ -565,7 +558,6 @@ exports[`Render MainPage 1`] = `
               >
                 <a
                   href="#"
-                  onClick={[Function]}
                 >
                   MockDescription
                 </a>

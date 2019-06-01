@@ -76,14 +76,14 @@ const city = {
 };
 
 
-const hoveredCardMock = null;
+const activeCardMock = null;
 
 describe(`test Map render`, () => {
   it(`Map rendered`, () => {
     const tree = renderer.create(<Map
       city={city}
       offers={offers}
-      hoveredCard={hoveredCardMock}
+      activeCard={activeCardMock}
     />).toJSON();
 
     expect(tree).toMatchSnapshot();

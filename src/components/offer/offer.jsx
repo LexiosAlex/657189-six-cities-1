@@ -7,24 +7,19 @@ const PremiumStatus = () => (
   </div>
 );
 
-export const Offer = (props) => {
-  const {offer, onCardMouseEnter, onCardMouseOut, onCardClick} = props;
+const Offer = (props) => {
+  const {offer, onOfferImgClick} = props;
 
-  const getHoveredCard = (evt) => {
+  const getHighlightedPinCard = (evt) => {
     evt.preventDefault();
-    onCardMouseEnter(offer);
+    onOfferImgClick(offer);
   };
 
-  const getActiveCard = (evt) => {
-    evt.preventDefault();
-    onCardClick(offer);
-  };
-
-  return <article className="cities__place-card place-card" onMouseOver={getHoveredCard} onMouseOut={onCardMouseOut}>
+  return <article className="cities__place-card place-card" >
     {offer.isPremium && <PremiumStatus/>}
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
-        <img className="place-card__image" src={offer.img} width="260" height="200" alt="Place image"></img>
+        <img className="place-card__image" src={offer.img} width="260" height="200" alt="Place image" onClick={getHighlightedPinCard}></img>
       </a>
     </div>
     <div className="place-card__info">
@@ -47,7 +42,7 @@ export const Offer = (props) => {
         </div>
       </div>
       <h2 className="place-card__name">
-        <a href="#" onClick={getActiveCard}>{offer.description}</a>
+        <a href="#" >{offer.description}</a>
       </h2>
       <p className="place-card__type">{offer.type}</p>
     </div>
@@ -70,8 +65,7 @@ Offer.propTypes = {
       mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
     }).isRequired,
   }).isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired,
-  onCardMouseOut: PropTypes.func.isRequired,
-  onCardClick: PropTypes.func.isRequired
+  onOfferImgClick: PropTypes.func.isRequired,
 };
 
+export default Offer;

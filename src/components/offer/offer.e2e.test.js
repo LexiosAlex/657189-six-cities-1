@@ -1,11 +1,11 @@
 import React from 'react';
 import Enzyme, {mount, configure} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {Offer} from "./offer.jsx";
+import Offer from "./offer.jsx";
 
 configure({adapter: new Adapter()});
 
-const offer = {
+const mockOffer = {
   id: 1,
   title: `Amsterdam room`,
   isPremium: false,
@@ -23,33 +23,32 @@ const offer = {
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`Simulate events in Offer`, () => {
-  const clickHandler = jest.fn();
-  const hoverHandler = jest.fn();
-  const hoverDeActivateHandler = jest.fn();
-  const hoverPreventDefaault = jest.fn();
-  const clickPreventDefault = jest.fn();
-  const placeElement = mount(<Offer
-    offer={offer}
-    onCardMouseEnter={hoverHandler}
-    onCardMouseOut={hoverDeActivateHandler}
-    onCardClick={clickHandler}
-  />);
+let clickHandler;
+let placeImage;
+let clickPreventDefault;
 
-  const placeHeader = placeElement.find(`h2.place-card__name`);
-  placeHeader.simulate(`click`, {
+beforeEach(() => {
+  clickHandler = jest.fn();
+  const placeElement = mount(
+      <Offer
+        offer={mockOffer}
+        onOfferImgClick={clickHandler}
+      />);
+  // placeDescription = placeElement.find(`.place-card__name a`);
+  placeImage = placeElement.find(`.place-card__image`);
+});
+
+it(`image is defined before click`, () => {
+  expect(placeImage).toHaveLength(1);
+});
+
+it(`after image click`, () => {
+  placeImage.simulate(`click`, {
     preventDefault: clickPreventDefault,
   });
-  expect(clickHandler).toHaveBeenCalledTimes(1);
   expect(clickPreventDefault).toHaveBeenCalledTimes(1);
   expect(clickHandler).toHaveBeenCalledTimes(1);
-  expect(clickHandler.mock.calls[0][0]).toBe(offer);
-
-  const placeCard = placeElement.find(`article.cities__place-card`);
-  placeCard.simulate(`mouseover`, {
-    preventDefault: hoverPreventDefaault,
-  });
-  expect(hoverPreventDefaault).toHaveBeenCalledTimes(1);
-  expect(hoverHandler).toHaveBeenCalledTimes(1);
-  expect(hoverHandler.mock.calls[0][0]).toBe(offer);
+  expect(clickHandler.mock.calls[0][0]).toBe(mockOffer);
 });
+
+

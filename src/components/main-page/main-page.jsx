@@ -4,11 +4,10 @@ import PropTypes from "prop-types";
 import {Location} from '../location/location.jsx';
 import {OffersList} from "../offers-list/offers-list.jsx";
 import {Map} from "../map/map.jsx";
-import {withHoveredCard} from "../../hocs/withHoveredCard/withHoveredCard.jsx";
 import {withActiveCard} from "../../hocs/withActiveCard/withActiveCard.jsx";
 
 const MainPage = (props) => {
-  const {cities, offers, onCardMouseEnter, onCardMouseOut, hoveredCard, city, places, onCityClick, onCardClick} = props;
+  const {cities, offers, city, places, onCityClick, onOfferImgClick, activeCard} = props;
   return <main className="page__main page__main--index">
     <h1 className="visually-hidden">Cities</h1>
     <div className="cities tabs">
@@ -41,15 +40,13 @@ const MainPage = (props) => {
           <OffersList
             offers={offers}
             places={places}
-            onCardClick={onCardClick}
-            onCardMouseEnter={onCardMouseEnter}
-            onCardMouseOut={onCardMouseOut}
+            onOfferImgClick={onOfferImgClick}
           />
         </section>
         <div className="cities__right-section">
           <section className="cities__map map">
             <Map
-              hoveredCard={hoveredCard}
+              activeCard={activeCard}
               offers={offers}
               places={places}
               city={city}
@@ -99,9 +96,7 @@ MainPage.propTypes = {
       mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
     }).isRequired,
   })).isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired,
-  onCardMouseOut: PropTypes.func.isRequired,
-  hoveredCard: PropTypes.shape({
+  activeCard: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
@@ -116,7 +111,7 @@ MainPage.propTypes = {
       mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
     }).isRequired,
   }),
-  onCardClick: PropTypes.func.isRequired
+  onOfferImgClick: PropTypes.func.isRequired,
 };
 
-export default withActiveCard(withHoveredCard(MainPage));
+export default withActiveCard(MainPage);

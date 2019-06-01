@@ -1,11 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {Offer} from '../offer/offer.jsx';
+import Offer from '../offer/offer.jsx';
 
 export const OffersList = (props) => {
-  const {offers, onCardMouseEnter, onCardMouseOut, onCardClick} = props;
+  const {offers, onOfferImgClick} = props;
   return <div className="cities__places-list places__list tabs__content">
-    {offers.map((it, i) => <Offer key={`place-${i}`} offer={it} onCardMouseEnter={onCardMouseEnter} onCardMouseOut={onCardMouseOut} onCardClick={onCardClick}/>)}
+    {offers.map((it, i) => <Offer key={`place-${i}`} offer={it} onOfferImgClick={onOfferImgClick}/>)}
   </div>;
 };
 
@@ -25,7 +25,5 @@ OffersList.propTypes = {
       mapCoordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
     }).isRequired,
   })).isRequired,
-  onCardMouseEnter: PropTypes.func.isRequired,
-  onCardMouseOut: PropTypes.func.isRequired,
-  onCardClick: PropTypes.func.isRequired,
+  onOfferImgClick: PropTypes.func.isRequired,
 };
