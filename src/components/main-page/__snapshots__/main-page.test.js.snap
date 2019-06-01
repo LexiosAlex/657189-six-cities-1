@@ -179,8 +179,6 @@ exports[`Render MainPage 1`] = `
         >
           <article
             className="cities__place-card place-card"
-            onMouseOut={[MockFunction]}
-            onMouseOver={[Function]}
           >
             <div
               className="cities__image-wrapper place-card__image-wrapper"
@@ -275,8 +273,6 @@ exports[`Render MainPage 1`] = `
           </article>
           <article
             className="cities__place-card place-card"
-            onMouseOut={[MockFunction]}
-            onMouseOver={[Function]}
           >
             <div
               className="place-card__mark"
@@ -378,8 +374,6 @@ exports[`Render MainPage 1`] = `
           </article>
           <article
             className="cities__place-card place-card"
-            onMouseOut={[MockFunction]}
-            onMouseOver={[Function]}
           >
             <div
               className="place-card__mark"
@@ -481,8 +475,6 @@ exports[`Render MainPage 1`] = `
           </article>
           <article
             className="cities__place-card place-card"
-            onMouseOut={[MockFunction]}
-            onMouseOver={[Function]}
           >
             <div
               className="cities__image-wrapper place-card__image-wrapper"

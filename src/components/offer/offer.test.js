@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Offer} from './offer.jsx';
+import Offer from './offer.jsx';
 
 const offer = {
   id: 1,
@@ -22,8 +22,7 @@ it(`Render offer`, () => {
   const tree = renderer
     .create(<Offer
       offer={offer}
-      onActiveCard={jest.fn()}
-      onDeactiveCard={jest.fn()}
+      onOfferImgClick={jest.fn()}
     />)
     .toJSON();
 

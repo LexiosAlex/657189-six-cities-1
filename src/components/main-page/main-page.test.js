@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {MainPage} from './main-page.jsx';
+import MainPage from './main-page.jsx';
 
 const div = global.document.createElement(`div`);
 div.setAttribute(`id`, `map`);
@@ -102,8 +102,7 @@ it(`Render MainPage`, () => {
       city={city}
       places={places}
       onCityClick={jest.fn()}
-      onActiveCard={jest.fn()}
-      onDeactiveCard={jest.fn()}
+      onCardClick={jest.fn()}
     />)
     .toJSON();
 

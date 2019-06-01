@@ -71,22 +71,6 @@ const offers = [
   },
 ];
 
-const activeCard = {
-  id: 4,
-  title: `Amsterdam room`,
-  isPremium: false,
-  img: `img/apartment-01.jpg`,
-  price: `140`,
-  rating: `90`,
-  description: `MockDescription`,
-  isBookmarked: false,
-  mapCoordinates: [52.3809553943508, 4.939309666406198],
-  city: {
-    name: `Amsterdam`,
-    mapCoordinates: [52.38333, 4.9],
-  },
-};
-
 const places = offers;
 const city = {
   name: `Amsterdam`,
@@ -96,14 +80,11 @@ const city = {
 it(`Render App`, () => {
   const tree = renderer
     .create(<App
-      activeCard={activeCard}
       cities={cities}
       places={places}
       offers={offers}
       city={city}
       onCityClick = {jest.fn()}
-      onActiveCard = {jest.fn()}
-      onDeactiveCard = {jest.fn()}
     />)
     .toJSON();
 
