@@ -10,16 +10,11 @@ const PremiumStatus = () => (
 const Offer = (props) => {
   const {offer, onOfferImgClick} = props;
 
-  const getHighlightedPinCard = (evt) => {
-    evt.preventDefault();
-    onOfferImgClick(offer);
-  };
-
   return <article className="cities__place-card place-card" >
     {offer.isPremium && <PremiumStatus/>}
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
-        <img className="place-card__image" src={offer.img} width="260" height="200" alt="Place image" onClick={getHighlightedPinCard}></img>
+        <img className="place-card__image" src={offer.img} width="260" height="200" alt="Place image" onClick={() => onOfferImgClick(offer)}></img>
       </a>
     </div>
     <div className="place-card__info">

@@ -25,7 +25,7 @@ Enzyme.configure({adapter: new Adapter()});
 
 let clickHandler;
 let placeImage;
-let clickPreventDefault;
+// let clickPreventDefault;
 
 beforeEach(() => {
   clickHandler = jest.fn();
@@ -43,10 +43,8 @@ it(`image is defined before click`, () => {
 });
 
 it(`after image click`, () => {
-  placeImage.simulate(`click`, {
-    preventDefault: clickPreventDefault,
-  });
-  expect(clickPreventDefault).toHaveBeenCalledTimes(1);
+  placeImage.simulate(`click`);
+  // expect(clickPreventDefault).toHaveBeenCalledTimes(1);
   expect(clickHandler).toHaveBeenCalledTimes(1);
   expect(clickHandler.mock.calls[0][0]).toBe(mockOffer);
 });
